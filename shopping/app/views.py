@@ -7,3 +7,12 @@ def home(request):
 
 def mobile(request):
  return render(request, 'app/mobile.html')
+
+
+def profile(request):
+ return render(request, 'app/profile.html')
+
+
+
+def address(request):
+ return render(request, 'app/address.html')
