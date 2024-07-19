@@ -8,6 +8,8 @@ urlpatterns = [
     path('address/', address, name='address'),
     path('orders/', orders, name='orders'),
     path('changepassword/',change_password, name='changepassword'),
+    path('login/', login, name='login'),
+    path('registration/', customerregistration, name='customerregistration'),
 
 
 

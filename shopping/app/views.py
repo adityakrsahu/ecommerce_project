@@ -22,3 +22,10 @@ def orders(request):
 
 def change_password(request):
  return render(request, 'app/changepassword.html')
+
+
+def login(request):
+ return render(request, 'app/login.html')
+
+def customerregistration(request):
+ return render(request, 'app/customerregistration.html')
