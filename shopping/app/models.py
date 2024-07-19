@@ -34,4 +34,16 @@ CATEGORY_CHOICES = (
 )
 
 
-class Pr
+class Product(models.Model):
+    titel=models.CharField(max_length=100)
+    selling_price=models.FloatField()
+    discounted_price=models.FloatField()
+    description=models.TextField()
+    brand=models.CharField(max_length=100)
+    category = models.CharField(choices=CATEGORY_CHOICES,max_length=2)
+    Product_image=models.ImageField(upload_to='productimg')
+
+    def __str__(self) -> str:
+        return str(self.id)
+    
+
