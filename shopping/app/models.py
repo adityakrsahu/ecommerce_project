@@ -58,7 +58,7 @@ class Cart(models.Model):
 STATUSE_CHOICES =(
 ('Accepted','Acceptted'),
 ('packed','packed'),
-('On The Way','On The Way')
+('On The Way','On The Way'),
 ('Delivered','Delivered'),
 ('cancel','Cancal')
 
@@ -73,4 +73,3 @@ class OrderPlaced(models.Model):
     order_date= models.DateTimeField(auto_now_add=True)
     status=models.CharField(max_length=50,choices=STATUSE_CHOICES,default='pending')
 
-    
