@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator,MinValueValidator
 
 class State(models.Model):
     name = models.CharField(max_length=100)
@@ -6,7 +8,11 @@ class State(models.Model):
     def __str__(self):
         return self.name
 
-class Profile(models.Model):
+# class Castomer(models.Model):
+    # 
+
+class Castomer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     door_flat_no = models.CharField(max_length=50)
@@ -17,4 +23,15 @@ class Profile(models.Model):
     image = models.ImageField(upload_to='profile_images/')
 
     def __str__(self):
-        return self.name
+        return str(self.id)
+    
+
+CATEGORY_CHOICES = (
+    ('M', 'Mobile'),
+    ('L', 'Laptop'),
+    ('TW','Top Wear'),
+    ('BW','Botton Wear'),
+)
+
+
+class Pr
