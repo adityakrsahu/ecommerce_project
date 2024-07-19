@@ -11,7 +11,7 @@ class State(models.Model):
 # class Castomer(models.Model):
     # 
 
-class Castomer(models.Model):
+class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
@@ -53,5 +53,24 @@ class Cart(models.Model):
 
     def __str__(self) -> str:
         return str(self.id)
+    
+
+STATUSE_CHOICES =(
+('Accepted','Acceptted'),
+('packed','packed'),
+('On The Way','On The Way')
+('Delivered','Delivered'),
+('cancel','Cancal')
+
+)
 
 
+class OrderPlaced(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity= models.PositiveIntegerField(default=1)
+    order_date= models.DateTimeField(auto_now_add=True)
+    status=models.CharField(max_length=50,choices=STATUSE_CHOICES,default='pending')
+
+    
