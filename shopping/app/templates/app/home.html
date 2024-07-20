@@ -106,4 +106,49 @@
   </div>
 </div>
 <!-- End 2nd Product Slider -->
+<!-- 3rd Product Slider -->
+
+
+<div class="mx-3">
+  <h2>Shopping mobiles</h2>
+  <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
+    {% for m in mobiles %}
+    <div class="card" style="width: 18rem;">
+      <a href="{% url 'product-detail' %}" class="btn">
+        <div class="item">
+          <img class="card-img-top" width="250px" height="300px" src="{{ m.product_image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ m.titel}}</h5>
+            <p class="card-text">Rs.{{ m.discounted_price }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+<!-- 4th Product Slider -->
+
+<div class="mx-3">
+  <h2>Shopping Laptops</h2>
+  <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
+    {% for l in laptops %}
+    <div class="card" style="width: 18rem;">
+      <a href="{% url 'product-detail' %}" class="btn">
+        <div class="item">
+          <img class="card-img-top" width="250px" height="300px" src="{{ l.product_image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ l.titel}}</h5>
+            <p class="card-text">Rs.{{ l.discounted_price }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
 {% endblock main-content %}
