@@ -35,7 +35,7 @@ CATEGORY_CHOICES = (
 
 
 class Product(models.Model):
-    titel=models.CharField(max_length=100)
+    titel =models.CharField(max_length=100)
     selling_price=models.FloatField()
     discounted_price=models.FloatField()
     description=models.TextField()

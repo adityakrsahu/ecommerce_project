@@ -1,16 +1,13 @@
-.owl-carousel .item{
- /* border: 1px solid black; */
+ .item{
+ 
  font-size: 24px;
  text-align: center;
- margin-top: 20px;;
+ margin-top: 20px;
+ display: grid;
+ grid-template-columns: auto auto auto;
+
 }
 
-.owl-next{
- float:right;
-}
-.owl-prev{
- float:left;
-}
 .owl-prev span{
  font-size: 24px;
  font-weight: bold;
@@ -19,3 +16,11 @@
  font-size: 24px;
  font-weight: bold;
 }
+
+#home-c{
+    display: flex;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
