@@ -1,10 +1,31 @@
 from django.shortcuts import render
 # from .serializers import *
+from django.views import View
+from .models import *
 
 # Create your views here.
 
-def home(request):
-    return render (request, 'app/home.html')
+# def home(request):
+#     return render (request, 'app/home.html')
+
+class ProductView(View):
+    def get(self,request):
+        topwears = Product.objects.filter(category='TW')
+        bottomwears = Product.objects.filter(category='BW')
+        mobiles = Product.objects.filter(category='M')
+        laptops = Product.objects.filter(category='L')
+        return render (request, 'app/home.html',
+                       {'topwears':topwears,
+                        'bottomwears':bottomwears,
+                        'mobiles':mobiles, 
+                        'laptops':laptops }
+                       )
+
+
+def product_detail(request):
+ return render(request, 'app/productdetail.html')
+
+
 
 def mobile(request):
  return render(request, 'app/mobile.html')
