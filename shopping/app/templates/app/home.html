@@ -56,11 +56,11 @@
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for b in bottomwears %}
     <div class="card" style="width: 18rem;">
-      <a href="{% url 'product-detail' %}" class="btn">
+      <a href="{% url 'product-detail' b.id %}" class="btn">
         <div class="item">
           <img class="card-img-top" width="250px" height="300px" src="{{ b.product_image.url }}" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{ b.titel}}</h5>
+            <h5 class="card-title">{{ b.titel }}</h5>
             <p class="card-text">Rs.{{ b.discounted_price }}</p>
           </div>
         </div>
@@ -113,11 +113,11 @@
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for tp in topwears %}
     <div class="card" style="width: 18rem;">
-      <a href="{% url 'product-detail' %}" class="btn">
+      <a href="{% url 'product-detail' tp.id %}" class="btn">
         <div class="item">
           <img class="card-img-top" width="250px" height="300px" src="{{ tp.product_image.url }}" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{ tp.titel}}</h5>
+            <h5 class="card-title">{{ tp.titel }}</h5>
             <p class="card-text">Rs.{{ tp.discounted_price }}</p>
           </div>
         </div>
@@ -127,19 +127,19 @@
   </div>
 </div>
 <!-- End 2nd Product Slider -->
-<!-- 3rd Product Slider -->
 
+<!-- 3rd Product Slider -->
 
 <div class="mx-3">
   <h2 style="margin: 35px;">Shopping mobiles</h2>
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for m in mobiles %}
     <div class="card" style="width: 18rem;">
-      <a href="{% url 'product-detail' %}" class="btn">
+      <a href="{% url 'product-detail' m.id %}" class="btn">
         <div class="item">
           <img class="card-img-top" width="250px" height="300px" src="{{ m.product_image.url }}" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{ m.titel}}</h5>
+            <h5 class="card-title">{{ m.titel }}</h5>
             <p class="card-text">Rs.{{ m.discounted_price }}</p>
           </div>
         </div>
@@ -148,7 +148,7 @@
     {% endfor %}
   </div>
 </div>
-
+<!-- End 3rd Product Slider -->
 
 <!-- 4th Product Slider -->
 
@@ -157,11 +157,11 @@
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for l in laptops %}
     <div class="card" style="width: 18rem;">
-      <a href="{% url 'product-detail' %}" class="btn">
+      <a href="{% url 'product-detail' l.id %}" class="btn">
         <div class="item">
           <img class="card-img-top" width="250px" height="300px" src="{{ l.product_image.url }}" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{ l.titel}}</h5>
+            <h5 class="card-title">{{ l.titel }}</h5>
             <p class="card-text">Rs.{{ l.discounted_price }}</p>
           </div>
         </div>
@@ -170,6 +170,6 @@
     {% endfor %}
   </div>
 </div>
-
+<!-- End 4th Product Slider -->
 
 {% endblock main-content %}
