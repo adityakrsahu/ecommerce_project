@@ -52,7 +52,7 @@
 {% block main-content %}
 <!-- 1st Product Slider -->
 <div class="m-3">
-  <h2>Shopping Bottomwear</h2>
+  <h2 style="margin: 35px;">Shopping Bottomwear</h2>
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for b in bottomwears %}
     <div class="card" style="width: 18rem;">
@@ -74,21 +74,42 @@
 <!-- Payment Info Section -->
 <div class="container my-5">
   <div class="row">
-    <div class="col-sm-3">
-      <div class="card mb-3">
-        <div class="card-body">
-          <img src="" alt="" class="img-fluid">
-        </div>
+   <div class="col-sm-3">
+    <div class="card mb-3">
+      <div class="card-body">
+      <img src="{% static 'app/images/payavail/cc.jpg' %}" alt="" srcset="" class="img-fluid">
       </div>
     </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card mb-3">
+      <div class="card-body">
+       <img src="{% static 'app/images/payavail/upi.jpg' %}" alt="" srcset="" class="img-fluid">
+      </div>
+    </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card mb-3">
+      <div class="card-body">
+       <img src="{% static 'app/images/payavail/nb.jpg' %}" alt="" srcset="" class="img-fluid">
+      </div>
+    </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card mb-3">
+      <div class="card-body">
+       <img src="{% static 'app/images/payavail/bj.jpg' %}" alt="" srcset="" class="img-fluid">
+      </div>
+    </div>
+   </div>
   </div>
-</div>
+ </div>
 <!-- End Payment Info Section -->
 
 <!-- 2nd Product Slider -->
 
 <div class="mx-3">
-  <h2>Shopping Topwear</h2>
+  <h2 style="margin: 35px;">Shopping Topwear</h2>
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for tp in topwears %}
     <div class="card" style="width: 18rem;">
@@ -110,7 +131,7 @@
 
 
 <div class="mx-3">
-  <h2>Shopping mobiles</h2>
+  <h2 style="margin: 35px;">Shopping mobiles</h2>
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for m in mobiles %}
     <div class="card" style="width: 18rem;">
@@ -132,7 +153,7 @@
 <!-- 4th Product Slider -->
 
 <div class="mx-3">
-  <h2>Shopping Laptops</h2>
+  <h2 style="margin: 35px;">Shopping Laptops</h2>
   <div style="display: flex; row-gap: 20px; flex-wrap: wrap; justify-content: space-around;">
     {% for l in laptops %}
     <div class="card" style="width: 18rem;">
