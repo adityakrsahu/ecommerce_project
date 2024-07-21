@@ -75,6 +75,19 @@ def topwear(request, data=None):
         topwears = Product.objects.filter(category="TW").filter(discounted_price__gt=10000) 
     return render(request, 'app/topwear.html',{'topwears':topwears})
 
+
+def bottomwear(request, data=None):
+    if data == None:
+        bottomwears = Product.objects.filter(category="BW")
+    elif data == 'HP' or data == 'Lenovo' or data == 'Apple' or data == 'ASUS':
+       bottomwears = Product.objects.filter(category="BW").filter(brand=data)
+    elif data == 'below':
+        bottomwears= Product.objects.filter(category="BW").filter(discounted_price__lt=10000)    
+    elif data == 'above':
+        bottomwears = Product.objects.filter(category="BW").filter(discounted_price__gt=10000) 
+    return render(request, 'app/bottomwear.html',{'bottomwears':bottomwears})
+
+
 def profile(request):
  return render(request, 'app/profile.html')
 
