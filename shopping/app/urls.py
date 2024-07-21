@@ -10,7 +10,10 @@ urlpatterns = [
 
     path('buy/', buy_now, name='buy-now'),
 
-    path('mobile/',mobile, name='mobile'),
+    path('mobile/', mobile, name='mobile'),
+    path('mobile/<slug:data>/', mobile, name='mobiledata'),
+
+
     path('profile/',profile, name='profile'),
     path('address/', address, name='address'),
     path('orders/', orders, name='orders'),

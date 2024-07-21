@@ -40,8 +40,19 @@ def buy_now(request):
  return render(request, 'app/buynow.html')
 
 
-def mobile(request):
- return render(request, 'app/mobile.html')
+def mobile(request, data=None):
+    if data == None:
+        mobiles = Product.objects.filter(category="M")
+    elif data == 'Redmi' or data == 'Samsung' or data == 'apple':
+        mobiles = Product.objects.filter(category="M").filter(brand=data)
+    elif data == 'below':
+        mobiles = Product.objects.filter(category="M").filter(discounted_price__lt=10000)
+        
+    elif data == 'above':
+        mobiles = Product.objects.filter(category="M").filter(discounted_price__gt=10000)
+        
+      
+    return render(request, 'app/mobile.html',{'mobiles':mobiles})
 
 
 def profile(request):
