@@ -54,16 +54,26 @@ def mobile(request, data=None):
 
 def laptop(request, data=None):
     if data == None:
-        mobiles = Product.objects.filter(category="L")
+        laptops = Product.objects.filter(category="L")
     elif data == 'HP' or data == 'Lenovo' or data == 'Apple' or data == 'ASUS':
-        mobiles = Product.objects.filter(category="M").filter(brand=data)
+        laptops = Product.objects.filter(category="L").filter(brand=data)
     elif data == 'below':
-        mobiles = Product.objects.filter(category="M").filter(discounted_price__lt=10000)    
+        laptops = Product.objects.filter(category="L").filter(discounted_price__lt=10000)    
     elif data == 'above':
-        mobiles = Product.objects.filter(category="M").filter(discounted_price__gt=10000) 
-    return render(request, 'app/mobile.html',{'mobiles':mobiles})
+        laptops = Product.objects.filter(category="L").filter(discounted_price__gt=10000) 
+    return render(request, 'app/laptop.html',{'laptops':laptops})
 
 
+def topwear(request, data=None):
+    if data == None:
+        topwears = Product.objects.filter(category="TW")
+    elif data == 'HP' or data == 'Lenovo' or data == 'Apple' or data == 'ASUS':
+        topwears = Product.objects.filter(category="TW").filter(brand=data)
+    elif data == 'below':
+        topwears = Product.objects.filter(category="TW").filter(discounted_price__lt=10000)    
+    elif data == 'above':
+        topwears = Product.objects.filter(category="TW").filter(discounted_price__gt=10000) 
+    return render(request, 'app/topwear.html',{'topwears':topwears})
 
 def profile(request):
  return render(request, 'app/profile.html')
