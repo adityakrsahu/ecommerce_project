@@ -43,16 +43,26 @@ def buy_now(request):
 def mobile(request, data=None):
     if data == None:
         mobiles = Product.objects.filter(category="M")
-    elif data == 'Redmi' or data == 'Samsung' or data == 'apple':
+    elif data == 'Redmi' or data == 'Samsung' or data == 'apple' or data == 'Android':
         mobiles = Product.objects.filter(category="M").filter(brand=data)
     elif data == 'below':
-        mobiles = Product.objects.filter(category="M").filter(discounted_price__lt=10000)
-        
+        mobiles = Product.objects.filter(category="M").filter(discounted_price__lt=10000)    
     elif data == 'above':
-        mobiles = Product.objects.filter(category="M").filter(discounted_price__gt=10000)
-        
-      
+        mobiles = Product.objects.filter(category="M").filter(discounted_price__gt=10000) 
     return render(request, 'app/mobile.html',{'mobiles':mobiles})
+
+
+def laptop(request, data=None):
+    if data == None:
+        mobiles = Product.objects.filter(category="L")
+    elif data == 'HP' or data == 'Lenovo' or data == 'Apple' or data == 'ASUS':
+        mobiles = Product.objects.filter(category="M").filter(brand=data)
+    elif data == 'below':
+        mobiles = Product.objects.filter(category="M").filter(discounted_price__lt=10000)    
+    elif data == 'above':
+        mobiles = Product.objects.filter(category="M").filter(discounted_price__gt=10000) 
+    return render(request, 'app/mobile.html',{'mobiles':mobiles})
+
 
 
 def profile(request):

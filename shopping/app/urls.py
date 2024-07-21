@@ -14,6 +14,10 @@ urlpatterns = [
     path('mobile/<slug:data>/', mobile, name='mobiledata'),
 
 
+    path('laptop/', laptop, name='laptop'),
+    path('laaptop/<slug:data>/', laptop, name='laptopdata'),
+
+
     path('profile/',profile, name='profile'),
     path('address/', address, name='address'),
     path('orders/', orders, name='orders'),

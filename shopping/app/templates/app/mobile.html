@@ -8,6 +8,7 @@
     <div class="list-group">
         <a href="{% url 'mobile' %}" class="list-group-item list-group-item-action" aria-current="true">All Mobile</a>
         <a href="{% url 'mobiledata' 'Redmi' %}" class="list-group-item list-group-item-action" aria-current="true">Redmi</a>
+        <a href="{% url 'mobiledata' 'Android' %}" class="list-group-item list-group-item-action" aria-current="true">Android</a>
         <a href="{% url 'mobiledata' 'Samsung' %}" class="list-group-item list-group-item-action" aria-current="true">Samsung</a>
         <a href="{% url 'mobiledata' 'apple' %}" class="list-group-item list-group-item-action" aria-current="true">apple</a>
         <a href="{% url 'mobiledata' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">below 10000</a>
@@ -28,9 +29,6 @@
         </div>
         {% endfor %}
     </div>
-  </div>
-  <div class="col-sm-8 offset-sm-1">
-   Mobile Product List
   </div>
  </div>
 </div>
