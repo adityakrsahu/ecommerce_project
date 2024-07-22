@@ -2,6 +2,10 @@ from django.shortcuts import render
 # from .serializers import *
 from django.views import View
 from .models import *
+from .forms import  CustomerRegisterationForm
+from django.contrib import messages
+
+
 
 # Create your views here.
 
@@ -89,6 +93,7 @@ def bottomwear(request, data=None):
 
 
 def profile(request):
+ 
  return render(request, 'app/profile.html')
 
 
@@ -105,5 +110,22 @@ def change_password(request):
 def login(request):
  return render(request, 'app/login.html')
 
-def customerregistration(request):
- return render(request, 'app/customerregistration.html')
+# def customerregistration(request):
+ 
+#  return render(request, 'app/customerregistration.html')
+
+
+class CustomerRegistrationView(View):
+    def get(self, request):
+        form = CustomerRegisterationForm()
+        return render(request, 'app/customerregistration.html',{'form':form})
+    def post(self , request):
+        form = CustomerRegisterationForm(request.POST)
+        if form.is_valid():
+            messages.success(request, 'congratulations!! Registered Successfully')
+            form.save()
+        return render(request, 'app/customerregistration.html',{'form':form})
+
+
+       
+
