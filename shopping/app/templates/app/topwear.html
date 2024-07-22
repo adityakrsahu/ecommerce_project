@@ -6,18 +6,17 @@
  <div class="row">
   <div class="col-sm-3">
     <div class="list-group">
-        <a href="{% url 'bottomwear' %}" class="list-group-item list-group-item-action" aria-current="true">All Bottom Wear</a>
-        <a href="{% url 'bottomweardata' 'Roadster' %}" class="list-group-item list-group-item-action" aria-current="true">Roadster</a>
-        <a href="{% url 'bottomweardata' 'Pants' %}" class="list-group-item list-group-item-action" aria-current="true">Pants</a>
-        <a href="{% url 'bottomweardata' 'india' %}" class="list-group-item list-group-item-action" aria-current="true">india</a>
-        <a href="{% url 'bottomweardata' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">below 500</a>
-        <a href="{% url 'bottomweardata' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">above 500</a>
+        <a href="{% url 'topwear' %}" class="list-group-item list-group-item-action" aria-current="true">All Bottom</a>
+        <a href="{% url 'topweardata' 'products' %}" class="list-group-item list-group-item-action" aria-current="true">product</a>
+        <a href="{% url 'topweardata' 'india' %}" class="list-group-item list-group-item-action" aria-current="true">india</a>
+        <a href="{% url 'topweardata' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">below 500</a>
+        <a href="{% url 'topweardata' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">above 500</a>
     
     </div>
   </div>
   <div class="col-sm-8">
     <div class="row">
-        {% for product in bottomwears %}
+        {% for product in topwears %}
         <div class="col-sm-4 text-center mb-4">
             <a href="{% url 'product-detail' product.id %}" class="btn">
                 <div class="item">

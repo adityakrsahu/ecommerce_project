@@ -17,6 +17,11 @@ urlpatterns = [
     path('laptop/', laptop, name='laptop'),
     path('laaptop/<slug:data>/', laptop, name='laptopdata'),
 
+    path('topwear/', topwear, name='topwear'),
+    path('topwear/<slug:data>/', topwear, name='topweardata'),
+
+    path('bottomwear/',bottomwear, name='bottomwear'),
+    path('bottomwear/<slug:data>/', bottomwear, name='bottomweardata'),
 
     path('profile/',profile, name='profile'),
     path('address/', address, name='address'),

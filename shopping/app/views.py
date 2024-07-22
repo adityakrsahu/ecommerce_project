@@ -43,7 +43,7 @@ def buy_now(request):
 def mobile(request, data=None):
     if data == None:
         mobiles = Product.objects.filter(category="M")
-    elif data == 'Redmi' or data == 'Samsung' or data == 'apple' or data == 'Android':
+    elif data == 'Redmi' or data == 'Samsung' or data == 'apple'  or data == 'Phone'or data == 'Android':
         mobiles = Product.objects.filter(category="M").filter(brand=data)
     elif data == 'below':
         mobiles = Product.objects.filter(category="M").filter(discounted_price__lt=10000)    
@@ -67,24 +67,24 @@ def laptop(request, data=None):
 def topwear(request, data=None):
     if data == None:
         topwears = Product.objects.filter(category="TW")
-    elif data == 'HP' or data == 'Lenovo' or data == 'Apple' or data == 'ASUS':
+    elif data == 'products' or data == 'india':
         topwears = Product.objects.filter(category="TW").filter(brand=data)
     elif data == 'below':
-        topwears = Product.objects.filter(category="TW").filter(discounted_price__lt=10000)    
+        topwears = Product.objects.filter(category="TW").filter(discounted_price__lt=500)    
     elif data == 'above':
-        topwears = Product.objects.filter(category="TW").filter(discounted_price__gt=10000) 
+        topwears = Product.objects.filter(category="TW").filter(discounted_price__gt=500) 
     return render(request, 'app/topwear.html',{'topwears':topwears})
 
 
 def bottomwear(request, data=None):
     if data == None:
         bottomwears = Product.objects.filter(category="BW")
-    elif data == 'HP' or data == 'Lenovo' or data == 'Apple' or data == 'ASUS':
+    elif data == 'Roadster' or data == 'Pants' or data == 'india':
        bottomwears = Product.objects.filter(category="BW").filter(brand=data)
     elif data == 'below':
-        bottomwears= Product.objects.filter(category="BW").filter(discounted_price__lt=10000)    
+        bottomwears= Product.objects.filter(category="BW").filter(discounted_price__lt=500)    
     elif data == 'above':
-        bottomwears = Product.objects.filter(category="BW").filter(discounted_price__gt=10000) 
+        bottomwears = Product.objects.filter(category="BW").filter(discounted_price__gt=500) 
     return render(request, 'app/bottomwear.html',{'bottomwears':bottomwears})
 
 
