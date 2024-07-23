@@ -19,28 +19,31 @@ urlpatterns = [
     path('profile/', profile, name='profile'),
     path('address/', address, name='address'),
     path('orders/', orders, name='orders'),
-    path('changepassword/', auth_views.PasswordChangeView.as_view(
-        template_name='app/PasswordChange.html', 
+     path('changepassword/', auth_views.PasswordChangeView.as_view(
+        template_name='app/password_change.html', 
         form_class=PasswordChangeForm, 
         success_url='/passwordchangedone/'
     ), name='changepassword'),
-    path("passwordchangedone/", auth_views.PasswordChangeDoneView.as_view(
-        template_name='app/passwordchangedone.html'
-    ), name="passwordchangedone"),
+    path('passwordchangedone/', auth_views.PasswordChangeDoneView.as_view(
+        template_name='app/password_change_done.html'
+    ), name='passwordchangedone'),
+
     path('password-reset/', auth_views.PasswordResetView.as_view(
-        template_name="app/password_reset.html", 
+        template_name='app/password_reset.html', 
         form_class=PasswordResetForm
     ), name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='app/password_reset_done.html'
     ), name='password_reset_done'),
-    # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
-    #     template_name='app/password_reset_confirm.html',
-    #     form_class=SetPasswordForm
-    # ), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
+    path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+        template_name='app/password_reset_confirm.html',
+        form_class=SetPasswordForm
+    ), name='password_reset_confirm'),
+    path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='app/password_reset_complete.html'
     ), name='password_reset_complete'),
+
+    
     path('accounts/login/', auth_views.LoginView.as_view(
         template_name='app/login.html', 
         authentication_form=LoginForm
@@ -48,3 +51,5 @@ urlpatterns = [
     path('registration/', CustomerRegistrationView.as_view(), name='customerregistration'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]
+
+
