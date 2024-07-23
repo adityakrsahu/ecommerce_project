@@ -130,6 +130,29 @@ class ProfileViewe(View):
         form = CustomberProfileForm()
         return render(request, 'app/profile.html', {'form': form , 'active':'btn-primary'})
     
+    def post(self, request):
+        form = CustomberProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = request.user
+            # user = form.cleaned_data['user']
+            name = form.cleaned_data['name']
+            address = form.cleaned_data['address']
+            door_flat_no = form.cleaned_data['door_flat_no']
+            phone = form.cleaned_data['phone']
+            city = form.cleaned_data['city']
+            state= form.cleaned_data['state']
+            zip_code= form.cleaned_data['zip_code']
+            # image = form.cleaned_data['image']
+
+            reg = Customer(user=user, name= name, address=address,door_flat_no=door_flat_no, phone=phone,city=city, state=state,
+                           zip_code=zip_code)
+            reg.save()
+            messages.success(request, 'Congratulations !! Profile Updated Successfully')
+
+
+        # return redirect('profile')  # Assuming you have a 'profile' URL name
+        return render(request, 'app/profile.html', {'form': form})
+    
 
       
    

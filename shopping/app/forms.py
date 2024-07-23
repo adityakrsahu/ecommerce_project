@@ -79,11 +79,16 @@ class CustomberProfileForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-control'}),
         empty_label="Select State"
     )
+    # user = forms.ModelChoiceField(
+    #     queryset=User.objects.all(),
+    #     widget=forms.Select(attrs={'class': 'form-control'}),
+    #     empty_label="Select User"
+    # )
     class Meta:
         model = Customer
-        fields = ['user', 'name', 'address', 'door_flat_no', 'phone', 'city', 'state', 'zip_code', 'image']
+        fields = [ 'name', 'address', 'door_flat_no', 'phone', 'city', 'state', 'zip_code']
         widgets = {
-            'user': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'user': forms.Select(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'door_flat_no': forms.TextInput(attrs={'class': 'form-control'}),
@@ -91,6 +96,6 @@ class CustomberProfileForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.Select(attrs={'class': 'form-control'}), 
             'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control'})
+            # 'image': forms.ImageField(attrs={'class': 'form-control'})
         }
 
