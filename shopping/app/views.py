@@ -2,7 +2,7 @@ from django.shortcuts import render
 # from .serializers import *
 from django.views import View
 from .models import *
-from .forms import  CustomerRegisterationForm
+from .forms import  *
 from django.contrib import messages
 
 
@@ -92,10 +92,6 @@ def bottomwear(request, data=None):
     return render(request, 'app/bottomwear.html',{'bottomwears':bottomwears})
 
 
-def profile(request):
- 
- return render(request, 'app/profile.html')
-
 
 def address(request):
  return render(request, 'app/address.html')
@@ -124,5 +120,16 @@ class CustomerRegistrationView(View):
         return render(request, 'app/customerregistration.html',{'form':form})
 
 
-       
+      
+# def profile(request):
+#  return render(request, 'app/profile.html')
+ 
 
+class ProfileViewe(View):
+    def get(self, request):
+        form = CustomberProfileForm()
+        return render(request, 'app/profile.html', {'form': form , 'active':'btn-primary'})
+    
+
+      
+   

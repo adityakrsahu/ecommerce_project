@@ -16,7 +16,9 @@ urlpatterns = [
     path('topwear/<slug:data>/', topwear, name='topweardata'),
     path('bottomwear/', bottomwear, name='bottomwear'),
     path('bottomwear/<slug:data>/', bottomwear, name='bottomweardata'),
-    path('profile/', profile, name='profile'),
+
+    path('profile/', ProfileViewe.as_view(), name='profile'),
+
     path('address/', address, name='address'),
     path('orders/', orders, name='orders'),
      path('changepassword/', auth_views.PasswordChangeView.as_view(

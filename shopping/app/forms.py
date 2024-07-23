@@ -1,4 +1,5 @@
 from django import forms
+from .models import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 from django.utils.translation import *
@@ -67,3 +68,29 @@ class SetPasswordForm(SetPasswordForm):
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control'})
     )
+
+
+from django import forms
+from .models import Customer
+
+class CustomberProfileForm(forms.ModelForm):
+    state = forms.ModelChoiceField(
+        queryset=State.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        empty_label="Select State"
+    )
+    class Meta:
+        model = Customer
+        fields = ['user', 'name', 'address', 'door_flat_no', 'phone', 'city', 'state', 'zip_code', 'image']
+        widgets = {
+            'user': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'door_flat_no': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.Select(attrs={'class': 'form-control'}), 
+            'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control'})
+        }
+
