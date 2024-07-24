@@ -52,6 +52,9 @@ urlpatterns = [
     ), name='login'),
     path('registration/', CustomerRegistrationView.as_view(), name='customerregistration'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+
+    path('checkout/', checkout, name='checkout'),
+
 ]
 
 

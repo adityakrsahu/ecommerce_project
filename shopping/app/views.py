@@ -94,9 +94,10 @@ def bottomwear(request, data=None):
 
 
 def address(request):
-    add = Customer.objects.filter(user=request.user)
- 
-    return render(request, 'app/address.html',{'add':add})
+    # Fetch unique addresses for the logged-in user
+    add = Customer.objects.filter(user=request.user).distinct()
+    return render(request, 'app/address.html', {'add': add, 'active': 'btn-primary'})
+
 
 def orders(request):
  return render(request, 'app/orders.html')
@@ -156,5 +157,7 @@ class ProfileViewe(View):
         return render(request, 'app/profile.html', {'form': form})
     
 
-      
+
+def checkout(request):
+ return render(request, 'app/checkout.html')
    
