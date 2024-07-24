@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # from .serializers import *
 from django.views import View
 from .models import *
@@ -36,12 +36,44 @@ class ProductDetailView(View):
     return render(request, 'app/productdetail.html',{'product':product})
     
 
+# def add_to_cart(request):
+#     user = request.user
+#     product_id = request.GET.get('prod_id')
+#     product = product.objects.get(id=product_id)
+#     print(Product)
+#     Cart(user=user, product=product).save()
+
+#     return render(request, 'app/addtocart.html')
+
+
 def add_to_cart(request):
- return render(request, 'app/addtocart.html')
+    if request.method == 'POST':
+        user = request.user
+        product_id = request.POST.get('prod_id')
+        form = CartForm(request.POST)
+        if form.is_valid():
+            form.save()
+        Cart(user=user, product=product_id).save()
+        return redirect('/cart')
+    else:
+        form = CartForm()
+        data = Cart.objects.all()
+        if data:
+            return render(request, 'app/addtocart.html', {'form': form, 'data': data})
+        else:
+            return render(request, 'app/addtocart.html', {'form': form})
+def show_cart(request):
+    if request.user.is_authenticated:
+        user = request.user
+        cart = Cart.objects.filter(user=user)
+        return render(request, 'app/addtocart.html', {'carts': cart})
+    else:
+        return redirect('/login')  # Redirect to login if the user is not authenticated
 
 
 def buy_now(request):
  return render(request, 'app/buynow.html')
+
 
 
 def mobile(request, data=None):
@@ -94,8 +126,7 @@ def bottomwear(request, data=None):
 
 
 def address(request):
-    # Fetch unique addresses for the logged-in user
-    add = Customer.objects.filter(user=request.user).distinct()
+    add = Customer.objects.filter(user=request.user)
     return render(request, 'app/address.html', {'add': add, 'active': 'btn-primary'})
 
 
@@ -104,11 +135,6 @@ def orders(request):
 
 def change_password(request):
  return render(request, 'app/changepassword.html')
-
-
-# def customerregistration(request):
- 
-#  return render(request, 'app/customerregistration.html')
 
 
 class CustomerRegistrationView(View):
@@ -124,9 +150,7 @@ class CustomerRegistrationView(View):
 
 
       
-# def profile(request):
-#  return render(request, 'app/profile.html')
- 
+
 
 class ProfileViewe(View):
     def get(self, request):
