@@ -45,23 +45,25 @@ class ProductDetailView(View):
 
 #     return render(request, 'app/addtocart.html')
 
-
 def add_to_cart(request):
     if request.method == 'POST':
         user = request.user
         product_id = request.POST.get('prod_id')
+        product = Product.objects.get(id=product_id)  # Fetch the Product instance
         form = CartForm(request.POST)
         if form.is_valid():
-            form.save()
-        Cart(user=user, product=product_id).save()
+            cart_item = form.save(commit=False)
+            cart_item.user = user
+            cart_item.product = product
+            cart_item.save()
         return redirect('/cart')
     else:
         form = CartForm()
         data = Cart.objects.all()
-        if data:
-            return render(request, 'app/addtocart.html', {'form': form, 'data': data})
-        else:
-            return render(request, 'app/addtocart.html', {'form': form})
+        return render(request, 'app/addtocart.html', {'form': form, 'data': data})   
+
+
+
 def show_cart(request):
     if request.user.is_authenticated:
         user = request.user
@@ -73,7 +75,6 @@ def show_cart(request):
 
 def buy_now(request):
  return render(request, 'app/buynow.html')
-
 
 
 def mobile(request, data=None):
