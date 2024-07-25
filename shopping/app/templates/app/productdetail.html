@@ -1,3 +1,4 @@
+
 {% extends 'app/base.html' %}
 {% load static %}
 {% block title %}Product Detail{% endblock title %}
@@ -9,7 +10,7 @@
    <img src="{{ product.product_image.url }}" alt="" class="img-fluid img-thumbnail">
   </div>
   <div class="col-sm-5 offset-sm-1">
-   <h2>Product Title: {{ product.titel}}</h2>
+   <h2>Product Title: {{ product.title }}</h2>
    <hr>
    <p>{{ product.description }}</p> <br>
    <h4>Rs. {{ product.discounted_price }} <small class="fw-light text-decoration-line-through">{{ product.selling_price }}</small></h4> <br>
@@ -33,3 +34,4 @@
  </div>
 </div>
 {% endblock main-content %}
+
