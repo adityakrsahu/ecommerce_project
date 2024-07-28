@@ -84,7 +84,7 @@ class CustomberProfileForm(forms.ModelForm):
         model = Customer
         fields = [ 'name', 'address', 'door_flat_no', 'phone', 'city', 'state', 'zip_code']
         widgets = {
-            # 'user': forms.Select(attrs={'class': 'form-control'}),
+       
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'door_flat_no': forms.TextInput(attrs={'class': 'form-control'}),
@@ -92,7 +92,7 @@ class CustomberProfileForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.Select(attrs={'class': 'form-control'}), 
             'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'image': forms.ImageField(attrs={'class': 'form-control'})
+    
         }
 
 
