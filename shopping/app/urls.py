@@ -6,7 +6,7 @@ from .forms import *
 urlpatterns = [
     path("", ProductView.as_view(), name='home'),
     path('product-detail/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
-    path('add-to-cart/', add_to_cart, name='add-to-cart'),
+    path('add-to-cart/<int:product_id>/', add_to_cart, name='add-to-cart'),
     path('cart/', show_cart, name='showcart'),
 
 

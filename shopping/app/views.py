@@ -41,6 +41,32 @@ from django.contrib import messages
 from .models import Product, Cart
 from .forms import CartForm
 
+
+
+def add_to_cart(request, product_id):
+    if request.method == 'POST':
+        user = request.user
+        product = get_object_or_404(Product, id=product_id)
+        
+        form = CartForm(request.POST)
+        if form.is_valid():
+            cart_item, created = Cart.objects.get_or_create(user=user, product=product)
+            if not created:
+                cart_item.quantity += 1
+                cart_item.save()
+            else:
+                cart_item.quantity = form.cleaned_data['quantity']
+                cart_item.save()
+            messages.success(request, 'Item added to cart successfully.')
+        else:
+            messages.error(request, 'Error adding item to cart.')
+        return redirect('/cart')
+    else:
+        form = CartForm()
+        data = Cart.objects.all()
+        return render(request, 'app/addtocart.html', {'form': form, 'data': data})
+
+
 # def add_to_cart(request):
 #     if request.method == 'POST':
 #         user = request.user
@@ -65,31 +91,6 @@ from .forms import CartForm
 #         form = CartForm()
 #         data = Cart.objects.all()
 #         return render(request, 'app/addtocart.html', {'form': form, 'data': data})
-
-def add_to_cart(request):
-    if request.method == 'POST':
-        user = request.user
-        product_id = request.POST.get('prod_id')
-        product = get_object_or_404(Product, id=product_id)
-        
-        form = CartForm(request.POST)
-        if form.is_valid():
-            cart_item, created = Cart.objects.get_or_create(user=user, product=product)
-            if not created:
-                # If the item already exists in the cart, update the quantity
-                cart_item.quantity += 1
-                cart_item.save()
-            else:
-                cart_item.quantity = form.cleaned_data['quantity']
-                cart_item.save()
-            messages.success(request, 'Item added to cart successfully.')
-        else:
-            messages.error(request, 'Error adding item to cart.')
-        return redirect('/cart')
-    else:
-        form = CartForm()
-        data = Cart.objects.all()
-        return render(request, 'app/addtocart.html', {'form': form, 'data': data})
 
 
 # def add_to_cart(request):
