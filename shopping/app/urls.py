@@ -24,11 +24,17 @@ urlpatterns = [
 
     path('address/', address, name='address'),
     path('orders/', orders, name='orders'),
+
+
+    # =========== forget password =================
+
+
      path('changepassword/', auth_views.PasswordChangeView.as_view(
         template_name='app/password_change.html', 
         form_class=PasswordChangeForm, 
         success_url='/passwordchangedone/'
     ), name='changepassword'),
+
     path('passwordchangedone/', auth_views.PasswordChangeDoneView.as_view(
         template_name='app/password_change_done.html'
     ), name='passwordchangedone'),
@@ -47,6 +53,9 @@ urlpatterns = [
     path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='app/password_reset_complete.html'
     ), name='password_reset_complete'),
+
+    # ===================== end forget password ==============.
+
     
     path('accounts/login/', auth_views.LoginView.as_view(
         template_name='app/login.html', 
