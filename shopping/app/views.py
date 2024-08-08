@@ -34,102 +34,55 @@ class ProductDetailView(View):
   def get(self,request,pk):
     product = Product.objects.get(pk=pk)
     return render(request, 'app/productdetail.html',{'product':product})
-    
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from .models import Product, Cart
-from .forms import CartForm
-
 
 
 def add_to_cart(request, product_id):
     if request.method == 'POST':
         user = request.user
-        product = get_object_or_404(Product, id=product_id)
-        
+        product = Product.objects.get(id=product_id)  # Fetch the Product instance
         form = CartForm(request.POST)
+        
         if form.is_valid():
-            cart_item, created = Cart.objects.get_or_create(user=user, product=product)
-            if not created:
-                cart_item.quantity += 1
-                cart_item.save()
-            else:
-                cart_item.quantity = form.cleaned_data['quantity']
-                cart_item.save()
-            messages.success(request, 'Item added to cart successfully.')
+            cart_item = form.save(commit=False)
+            cart_item.user = user
+            cart_item.product = product
+            cart_item.save()
+            return redirect('show_cart')  # Redirect to the cart view
         else:
-            messages.error(request, 'Error adding item to cart.')
-        return redirect('/cart')
+            # If form is invalid, render the same page with form errors
+            data = Cart.objects.filter(user=user)
+            return render(request, 'app/addtocart.html', {'form': form, 'data': data})
     else:
+        # Handle GET request to display the form
         form = CartForm()
-        data = Cart.objects.all()
+        data = Cart.objects.filter(user=request.user)
         return render(request, 'app/addtocart.html', {'form': form, 'data': data})
 
 
-# def add_to_cart(request):
-#     if request.method == 'POST':
-#         user = request.user
-#         product_id = request.POST.get('prod_id')
-#         product = get_object_or_404(Product, id=product_id)
-        
-#         form = CartForm(request.POST)
-#         if form.is_valid():
-#             cart_item, created = Cart.objects.get_or_create(user=user, product=product)
-#             if not created:
-#                 # If the item already exists in the cart, update the quantity
-#                 cart_item.quantity += 1
-#                 cart_item.save()
-#             else:
-#                 cart_item.quantity = form.cleaned_data['quantity']
-#                 cart_item.save()
-#             messages.success(request, 'Item added to cart successfully.')
-#         else:
-#             messages.error(request, 'Error adding item to cart.')
-#         return redirect('/cart')
-#     else:
-#         form = CartForm()
-#         data = Cart.objects.all()
-#         return render(request, 'app/addtocart.html', {'form': form, 'data': data})
-
-
-# def add_to_cart(request):
-#     if request.method == 'POST':
-#         user = request.user
-#         product_id = request.POST.get('prod_id')
-#         product = Product.objects.get(id=product_id)  # Fetch the Product instance
-#         form = CartForm(request.POST)
-#         if form.is_valid():
-#             cart_item = form.save(commit=False)
-#             cart_item.user = user
-#             cart_item.product = product
-#             cart_item.save()
-#         return redirect('/cart')
-#     else:
-#         form = CartForm()
-#         data = Cart.objects.all()
-#         return render(request, 'app/addtocart.html', {'form': form, 'data': data})
 
 def show_cart(request):
     if request.user.is_authenticated:
         user = request.user
         cart = Cart.objects.filter(user=user)
+        print("Cart Items:", cart)  # Debug print
+        
         amount = 0.0
         shipping_amount = 80.0
-        totalamount = 0.0  # Initialize totalamount outside the conditional block
+        totalamount = 0.0
 
         cart_product = [p for p in Cart.objects.all() if p.user == user]
+        print("Cart Products:", cart_product)  # Debug print
         
         if cart_product:
             for p in cart_product:
                 tempamount = p.quantity * p.product.discounted_price
                 amount += tempamount
 
-            totalamount = amount + shipping_amount  # Compute totalamount only once
+            totalamount = amount + shipping_amount
 
         return render(request, 'app/addtocart.html', {'carts': cart, 'totalamount': totalamount, 'amount': amount})
     else:
-        return redirect('/login')  # Redirect to login if the user is not authenticated
+        return redirect('/login')
 
 
 
@@ -193,9 +146,6 @@ def address(request):
 
 def orders(request):
  return render(request, 'app/orders.html')
-
-def change_password(request):
- return render(request, 'app/changepassword.html')
 
 
 class CustomerRegistrationView(View):

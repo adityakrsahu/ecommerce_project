@@ -14,9 +14,9 @@
    <p>{{ product.description }}</p> <br>
    <h4>Rs. {{ product.discounted_price }} <small class="fw-light text-decoration-line-through">{{ product.selling_price }}</small></h4> <br>
    
-   <form action="{% url 'add-to-cart' product.id %}" method="post" class="d-inline">
+   <form action="{% url 'add-to-cart' product.id %}" enctype="multipart/form-data" method="post" class="d-inline">
     {% csrf_token %}
-    <input type="hidden" name="prod_id" value="{{ product.id }}">
+    <input type="hidden" name="product_id" value="{{ product.id }}">
     <button type="submit" class="btn btn-primary shadow px-5 py-2">Add to Cart</button>
    </form>
    
